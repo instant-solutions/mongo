@@ -15,6 +15,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: 6.0
+          context: ./6.0
           platforms: linux/amd64,linux/arm64
           tags: instant-solutions/mongo:6.0.6,instant-solutions/mongo:6.0,instant-solutions/mongo:6
