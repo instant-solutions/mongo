@@ -18,3 +18,4 @@ jobs:
           context: ./6.0
           platforms: linux/amd64,linux/arm64
           tags: instant-solutions/mongo:6.0.6,instant-solutions/mongo:6.0,instant-solutions/mongo:6
+          push: true
