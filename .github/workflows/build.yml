@@ -30,12 +30,12 @@ jobs:
         with:
           context: ./6.0
           platforms: linux/amd64,linux/arm64
-          tags: i15s/mongo:6.0.6,i15s/mongo:6.0,i15s/mongo:6
+          tags: i15s/mongo:6.0.10,i15s/mongo:6.0,i15s/mongo:6
           push: true
       - name: Push image to GitHub container registry
         run: |
           docker buildx imagetools create \
-            --tag ghcr.io/instant-solutions/mongo:6.0.6 \
+            --tag ghcr.io/instant-solutions/mongo:6.0.10 \
             --tag ghcr.io/instant-solutions/mongo:6.0 \
             --tag ghcr.io/instant-solutions/mongo:6 \
-            i15s/mongo:6.0.6
+            i15s/mongo:6.0.10
