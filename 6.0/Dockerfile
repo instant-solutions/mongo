@@ -1,4 +1,4 @@
-FROM mongo:6.0.10
+FROM mongo:6.0.12
 LABEL authors="instant:solutions OG"
 
 ARG HEALTHCHECK_VERSION=1.0.0
