@@ -5,6 +5,9 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [ "6", "6.0","6.0.6", "6.0.10", "6.0.12", "6.0.13", "7", "7.0", "7.0.5" ]
     steps:
       - name: Git checkout
         uses: actions/checkout@v3
@@ -28,14 +31,13 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ./6.0
           platforms: linux/amd64,linux/arm64
-          tags: i15s/mongo:6.0.6,i15s/mongo:6.0,i15s/mongo:6
+          tags: i15s/mongo:${{ matrix.version }}
           push: true
+          build-args: |
+            VERSION=${{ matrix.version }}
       - name: Push image to GitHub container registry
         run: |
           docker buildx imagetools create \
-            --tag ghcr.io/instant-solutions/mongo:6.0.6 \
-            --tag ghcr.io/instant-solutions/mongo:6.0 \
-            --tag ghcr.io/instant-solutions/mongo:6 \
-            i15s/mongo:6.0.6
+            --tag ghcr.io/instant-solutions/mongo:${{ matrix.version }} \
+            i15s/mongo:${{ matrix.version }}
